@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE-edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="description">
+		<meta name="author" content="myName">
+		<title>Learning JQuery</title>
+
+		<!-- JQuery (also defines the type) -->
+		<script src="js/jquery-2.2.4.min.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<button id="add-new-row" type="button">Add New Row</button>
+		<div id="output">
+
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	// Work to be done when the DOM is loaded and "ready"
+	$(document).ready(
+		function() {
+			var count = 0; // Declaring a variable in an outer function will allow it to be used in an inner function and it'd also 
+			// maintain its state.
+			// Add an event listener to the button.
+			$("#add-new-row").click(
+				function() {
+					count++;
+					// Append to the output div, when we click the button.
+					$("#output").append("<p>This is a new row" + count + "</p>");
+				}
+			); 
+		}
+	);
+</script>

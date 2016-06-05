@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE-edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="description">
+		<meta name="author" content="myName">
+		<title>Learning JQuery</title>
+
+		<!-- CSS -->
+		<link href="css/advanced-page.css" rel="stylesheet" />
+		<!-- JQuery (also defines the type) -->
+		<script src="js/jquery-2.2.4.min.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div id="output">
+			
+		</div>
+		<div id="canvas">
+
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	$(document).ready(
+		// Capture events that are occuring inside the canvas div.
+		function() {
+			var startX = 0;
+			var startY = 0;
+			var endX = 0;
+			var endY = 0;
+			$("#canvas").click(
+				// When a click on the canvas occurs we want to fire the function below.
+				function(e) {
+					var x = e.pageX; // The position on the page when the mouse clicks.
+					var y = e.pageY; // The position on the page when the mouse clicks.
+					$("#output").html("<p>Left: " + x + " Right: " + y + "</p>");
+					// Set the initial click on the canvas as the first click.
+					if ((startX == 0) && (startY == 0)) {
+						startX = x;
+						startY = y;
+					}
+					else {
+						endX = x;
+						endY = y;
+						var xCoordinate = (startX < endX) ? startX : endX;
+						var yCoordinate = (startY < endY) ? startY : endY;
+						var width = (startX < endX) ? (endX - startX) : (startX - endX);
+						var height = (startY < endY) ? (endY - startY) : (startY - endY);
+
+						// Create an empty div tag
+						var div = $("<div></div>")
+							.css("left", xCoordinate)
+							.css("top", yCoordinate)
+							.width(width)
+							.height(height)
+							.css("position", "fixed")
+							.css("background-color", "#006")
+							.css("border", "1px solid #999");
+
+						// Append the div tag onto the canvas
+						$("#canvas").append(div);
+
+						// Reset the coordinates for a new rectangle.
+						startX = 0;
+						startY = 0;
+					}
+				}
+			);
+		}
+	);
+</script>

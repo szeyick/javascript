@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE-edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="description">
+		<meta name="author" content="myName">
+		<title>Learning JQuery</title>
+
+		<!-- CSS -->
+		<link href="css/basic-page.css" rel="stylesheet" />
+		<!-- JQuery (also defines the type) -->
+		<script src="js/jquery-2.2.4.min.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div>
+			<select id="selected-shape">
+				<option value="circle">Circle</option>
+				<option value="square">Square</option>
+			</select>
+			<select id="selected-colour">
+				<option value="red">Red</option>
+				<option value="yellow">Yellow</option>
+				<option value="green">Green</option>
+				<option value="blue">Blue</option>
+			</select>
+			<button id="add-shape" type="button">Add Shape</button>
+		</div>
+		<div id="output">
+
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	$(document).ready(
+		// Function called when the document is ready.
+		function() {
+			var count = 0;
+			$("#add-shape").click(
+				function() {
+					$("#output").append("<div><span>" + (++count) + "</span></div>");
+					// val() will return the selected value from a given id element.
+					// You can chain functions together and apply CSS properties to it by calling "addClass"
+					$("#output div:last") // Select the most recently placed div to the output div.
+						.addClass("shape")
+						.addClass($("#selected-shape").val())
+						.addClass($("#selected-colour").val());
+				}
+			);
+		}
+	);
+</script>
